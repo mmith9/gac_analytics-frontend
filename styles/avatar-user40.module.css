@@ -1,0 +1,26 @@
+.rectangleDiv,
+.rectangleDiv1 {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  border-radius: var(--br-2xs);
+  background-color: var(--color-pink);
+  width: 16px;
+  height: 16px;
+}
+.rectangleDiv1 {
+  top: 27px;
+  left: -10px;
+  border-radius: var(--br-2xl);
+  width: 60px;
+  height: 60px;
+}
+.avatarUser40 {
+  position: relative;
+  border-radius: var(--br-xs);
+  background-color: var(--gray-white);
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  overflow: hidden;
+}

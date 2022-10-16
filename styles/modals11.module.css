@@ -1,0 +1,181 @@
+.notificationSettingsB {
+  flex: 1;
+  position: relative;
+  letter-spacing: -0.03em;
+  line-height: 28px;
+  display: inline-block;
+}
+.closeLine1Icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.frameDiv {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 101px;
+  font-family: var(--sub-heading-regular-bold);
+}
+.rectangleDiv {
+  align-self: stretch;
+  position: relative;
+  border-radius: var(--br-sm);
+  background-color: var(--gray-300);
+  height: 1px;
+  flex-shrink: 0;
+}
+.radioUncheckedDiv {
+  position: absolute;
+  height: 83.33%;
+  width: 83.33%;
+  top: 8.33%;
+  right: 8.33%;
+  bottom: 8.33%;
+  left: 8.33%;
+  border-radius: var(--br-lg);
+  background-color: var(--gray-white);
+  border: 2px solid var(--gray-400);
+  box-sizing: border-box;
+}
+.radioDiv {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.featureSelectionDiv,
+.loremIpsumDolorSitAmetCo {
+  align-self: stretch;
+  position: relative;
+  letter-spacing: -0.03em;
+  line-height: 24px;
+  display: inline-block;
+}
+.featureSelectionDiv {
+  font-weight: 500;
+}
+.loremIpsumDolorSitAmetCo {
+  color: var(--gray-800);
+}
+.frameDiv2,
+.frameDiv3 {
+  display: flex;
+  justify-content: flex-start;
+}
+.frameDiv3 {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-2xs);
+}
+.frameDiv2 {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-md);
+}
+.radioFocusedDiv,
+.radioFocusedDiv1 {
+  position: absolute;
+  border-radius: var(--br-lg);
+}
+.radioFocusedDiv {
+  height: 83.33%;
+  width: 83.33%;
+  top: 8.33%;
+  right: 8.33%;
+  bottom: 8.33%;
+  left: 8.33%;
+  background-color: var(--primary-base);
+  border: 2px solid var(--primary-base);
+  box-sizing: border-box;
+}
+.radioFocusedDiv1 {
+  height: 33.33%;
+  width: 33.33%;
+  top: 33.33%;
+  right: 33.33%;
+  bottom: 33.33%;
+  left: 33.33%;
+  background-color: var(--gray-white);
+}
+.frameDiv1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+  font-size: var(--paragraph-regular-bold-size);
+}
+.secondaryDiv {
+  position: relative;
+  letter-spacing: -0.02em;
+  line-height: 24px;
+  font-weight: 500;
+  display: inline-block;
+}
+.buttonDiv {
+  border-radius: var(--br-xl);
+  background-color: var(--gray-white);
+  border: 1px solid var(--gray-300);
+  box-sizing: border-box;
+  position: relative;
+  width: 120px;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: var(--padding-xs) var(--padding-sm);
+  align-items: center;
+  justify-content: center;
+}
+.buttonDiv,
+.buttonDiv1,
+.frameDiv8 {
+  display: flex;
+  flex-direction: row;
+}
+.buttonDiv1 {
+  border-radius: var(--br-xl);
+  background-color: var(--primary-base);
+  width: 120px;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: var(--padding-xs) var(--padding-sm);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-white);
+}
+.frameDiv8 {
+  align-self: stretch;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 12px;
+  text-align: center;
+  font-size: var(--paragraph-small-normal-size);
+}
+.modals11Div {
+  position: relative;
+  border-radius: var(--br-2xs);
+  background-color: var(--gray-white);
+  box-shadow: var(--modal-modal);
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-sm);
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-lg);
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  text-align: left;
+  font-size: var(--sub-heading-regular-bold-size);
+  color: var(--gray-900);
+  font-family: var(--paragraph-small-normal);
+}

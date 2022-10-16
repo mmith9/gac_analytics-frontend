@@ -1,0 +1,13 @@
+.mainDiv {
+  
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: var(--paragraph-small-normal-size);
+  color: var(--color-black);
+  font-family: var(--paragraph-small-normal);
+}

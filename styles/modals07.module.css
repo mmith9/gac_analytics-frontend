@@ -1,0 +1,167 @@
+.selectTheTeamMemberYouWou {
+  flex: 1;
+  position: relative;
+  letter-spacing: -0.03em;
+  line-height: 28px;
+  display: inline-block;
+}
+.closeLine1Icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.frameDiv1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: var(--gap-lg);
+}
+.anEmailInviteWillBeSentO {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--paragraph-small-normal-size);
+  letter-spacing: -0.01em;
+  line-height: 24px;
+  font-family: var(--paragraph-small-normal);
+  color: var(--gray-800);
+  display: inline-block;
+}
+.frameDiv {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-xs);
+  font-size: var(--sub-heading-regular-bold-size);
+  font-family: var(--sub-heading-regular-bold);
+}
+.leftIconDiv,
+.leftIconDiv1 {
+  position: relative;
+  letter-spacing: -0.01em;
+  line-height: 24px;
+  display: inline-block;
+}
+.leftIconDiv {
+  align-self: stretch;
+}
+.leftIconDiv1 {
+  flex: 1;
+}
+.inputDiv,
+.inputDiv1 {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+}
+.inputDiv1 {
+  border-radius: 8px;
+  background-color: var(--gray-white);
+  border: 1px solid var(--gray-300);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  flex-direction: row;
+  padding: var(--padding-xs) 16px;
+  align-items: center;
+  gap: var(--gap-md);
+  color: var(--gray-400);
+}
+.inputDiv {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-xs);
+}
+.avatarImageCircle02 {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.flowbasewebsitecomDiv,
+.oliverSmithDiv {
+  align-self: stretch;
+  position: relative;
+  line-height: 24px;
+  display: inline-block;
+}
+.oliverSmithDiv {
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+.flowbasewebsitecomDiv {
+  font-size: var(--paragraph-small-normal-size);
+  letter-spacing: -0.01em;
+  color: var(--gray-600);
+}
+.frameDiv2,
+.frameDiv3,
+.frameDiv4 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.frameDiv4 {
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap-2xs);
+}
+.frameDiv2,
+.frameDiv3 {
+  align-self: stretch;
+  flex-direction: row;
+  gap: var(--gap-md);
+}
+.frameDiv2 {
+  flex-direction: column;
+  gap: var(--gap-lg);
+  font-size: var(--paragraph-regular-bold-size);
+}
+.primaryDiv {
+  position: relative;
+  letter-spacing: -0.02em;
+  line-height: 24px;
+  font-weight: 500;
+  display: inline-block;
+}
+.buttonDiv,
+.modals07Div {
+  overflow: hidden;
+  display: flex;
+  box-sizing: border-box;
+}
+.buttonDiv {
+  align-self: stretch;
+  border-radius: var(--br-xl);
+  background-color: var(--primary-base);
+  flex-direction: row;
+  padding: var(--padding-xs) var(--padding-sm);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--gray-white);
+}
+.modals07Div {
+  position: relative;
+  border-radius: var(--br-2xs);
+  background-color: var(--gray-white);
+  box-shadow: var(--modal-modal);
+  width: 540px;
+  flex-direction: column;
+  padding: var(--padding-sm);
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+  max-width: 90%;
+  max-height: 90%;
+  text-align: left;
+  font-size: var(--paragraph-small-normal-size);
+  color: var(--gray-900);
+  font-family: var(--paragraph-small-normal);
+}

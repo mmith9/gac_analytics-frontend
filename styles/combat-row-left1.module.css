@@ -1,0 +1,12 @@
+.combatRow1Left {
+  align-self: stretch;
+  height: 100px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-2xs);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gap-sm);
+}

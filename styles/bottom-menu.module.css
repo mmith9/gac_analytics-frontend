@@ -1,0 +1,13 @@
+.bottomMenuDiv {
+  align-self: stretch;
+  height: 5vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: right;
+  font-size: var(--paragraph-small-normal-size);
+  color: var(--color-black);
+  font-family: var(--paragraph-small-normal);
+}

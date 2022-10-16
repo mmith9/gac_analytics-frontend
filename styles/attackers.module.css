@@ -1,0 +1,12 @@
+.attackersDiv {
+  overflow:visible;
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-2xs);
+  box-sizing: border-box;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-sm);
+}

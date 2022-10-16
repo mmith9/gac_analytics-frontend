@@ -1,0 +1,61 @@
+.unitLimit5 {
+  position: relative;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.containerButton {
+  position: relative;
+  cursor: pointer;
+}
+.menuContainerDiv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-3xs);
+  background-color: var(--gray-white);
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.05);
+  width: 150px;
+  height: 150px;
+}
+.textDiv,
+.textDiv1,
+.textDiv2,
+.textDiv3 {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  display: inline-block;
+}
+.textDiv1,
+.textDiv2,
+.textDiv3 {
+  top: 50px;
+}
+.textDiv2,
+.textDiv3 {
+  top: 85px;
+}
+.textDiv3 {
+  top: 120px;
+}
+.menuDiv {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  text-align: left;
+  font-size: var(--font-size-sm);
+}
+.leftPanelDiv {
+  align-self: stretch;
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: var(--paragraph-small-normal-size);
+  color: var(--color-black);
+  font-family: var(--paragraph-small-normal);
+}

@@ -1,0 +1,20 @@
+.selectGacSeason {
+  position: relative;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.menuCenterDiv {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-lg) var(--padding-2xl);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-align: right;
+  font-size: var(--paragraph-small-normal-size);
+  color: var(--color-black);
+  font-family: var(--paragraph-small-normal);
+}

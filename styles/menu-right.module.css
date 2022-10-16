@@ -1,0 +1,19 @@
+.addDefenderUnits {
+  position: relative;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.menuRightDiv {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-md) var(--padding-xl);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: right;
+  font-size: var(--paragraph-small-normal-size);
+  color: var(--color-black);
+  font-family: var(--paragraph-small-normal);
+}

@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap"); */
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+
+
+  /* fonts */
+  --paragraph-small-normal: Inter;
+  --sub-heading-regular-bold: Satoshi;
+
+  /* font sizes */
+  --font-size-sm: 12px;
+  --paragraph-small-normal-size: 14px;
+  --paragraph-regular-bold-size: 16px;
+  --sub-heading-regular-bold-size: 20px;
+
+  /* Colors */
+  --gray-white: #fff;
+  --color-black: #000;
+  --color-gold: #ffcb14;
+  --gray-300: #e4e6f1;
+  --color-gray-200: #9cdbfc;
+  --gray-400: #b6b9ce;
+  --gray-600: #393b6a;
+  --color-pink: #e5a1cd;
+  --primary-base: #642eff;
+  --gray-800: #1b114a;
+  --gray-900: #160042;
+
+  /* Gaps */
+  --gap-2xs: 4px;
+  --gap-xs: 8px;
+  --gap-sm: 10px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 32px;
+
+  /* Paddings */
+  --padding-2xs: 10px;
+  --padding-xs: 12px;
+  --padding-sm: 24px;
+  --padding-md: 40px;
+  --padding-lg: 41px;
+  --padding-xl: 67px;
+  --padding-2xl: 83px;
+
+  /* border radiuses */
+  --br-3xs: 10px;
+  --br-2xs: 16px;
+  --br-xs: 20px;
+  --br-sm: 24px;
+  --br-md: 30px;
+  --br-lg: 44px;
+  --br-xl: 48px;
+  --br-2xl: 60px;
+  --br-3xl: 90px;
+
+  /* Effects */
+  --modal-modal: 0px 148px 144px -32px rgba(27, 9, 67, 0.04);
+}

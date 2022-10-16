@@ -1,0 +1,22 @@
+.fixedTeamSize5 {
+  position: relative;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.rightPanelDiv {
+  align-self: stretch;
+  border-radius: var(--br-sm);
+  background: linear-gradient(rgba(226, 238, 226, 0.39), rgba(151, 175, 143, 0.904)),
+    linear-gradient(rgba(155, 241, 155, 0.2), rgba(137, 226, 137, 0.2)),
+    linear-gradient(rgba(99, 128, 99, 0.5), rgba(128, 160, 128, 0.5)), #d3eebd; 
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: var(--paragraph-small-normal-size);
+  color: var(--color-black);
+  font-family: var(--paragraph-small-normal);
+}

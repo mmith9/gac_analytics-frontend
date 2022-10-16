@@ -1,0 +1,19 @@
+.addAttackerUnits {
+  position: relative;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.menuLeftDiv {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-2xs);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: right;
+  font-size: var(--paragraph-small-normal-size);
+  color: var(--color-black);
+  font-family: var(--paragraph-small-normal);
+}

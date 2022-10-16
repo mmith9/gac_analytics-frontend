@@ -1,0 +1,10 @@
+.combatsDiv {
+  overflow-y: scroll;
+
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
