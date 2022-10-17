@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useReducer} from "react";
-import {GacBattleData, Team} from '../type_defs/data_classes'
+import {DatacronCC, GacBattleData, Team} from '../type_defs/data_classes'
 
 interface Action {
   type:string,
@@ -14,7 +14,9 @@ interface AppDataInterface {
   attackerTeam:Team |null,
   setAppData: React.Dispatch<Action>,
   unitDialogProps: UnitDialogProps,
-  gacBattleData: GacBattleData
+  gacBattleData: GacBattleData,
+  defenderDC: DatacronCC |null,
+  attackerDC: DatacronCC |null
 }
 
 const warnNoContext = () => console.warn('no app_data provider')
@@ -24,7 +26,9 @@ const empty_specimen:AppDataInterface={
   attackerTeam:null,
   setAppData:warnNoContext,
   unitDialogProps: unitDialogProps_init,
-  gacBattleData: {battles:[]}
+  gacBattleData: {battles:[]},
+  defenderDC: null,
+  attackerDC: null
 }
 
 function appDataReducer(state:AppDataInterface, action:Action):AppDataInterface {
@@ -45,6 +49,12 @@ function appDataReducer(state:AppDataInterface, action:Action):AppDataInterface 
     }
     case 'GAC_BATTLE_DATA': {
       return { ...state, gacBattleData: action.value }
+    }
+    case 'DEFENDER_DC': {
+      return { ...state, defenderDC: action.value }
+    }
+    case 'ATTACKER_DC': {
+      return { ...state, attackerDC: action.value }
     }
     default:{
       return state

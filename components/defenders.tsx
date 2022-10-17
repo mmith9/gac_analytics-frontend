@@ -7,24 +7,31 @@ import { useAppData } from "../contexts/app_data_context_provider";
 
 const Defenders: FunctionComponent = () =>
 {
-	console.log('defenders render')
+	//console.log('defenders render')
 	const { gacBattleData } = useAppData()
-	const { allUnits } = useStaticData()
+	const { allUnits, popularLeaders } = useStaticData()
 
 	let unit_rows: JSX.Element[] = []
 	let unit_row: UnitList = []
+	let rnd
 
 	if (allUnits.length == 0) { if (allUnits.length == 0) { console.log('no render') ;return (<div className={styles.defendersDiv} />) } }
 	if (gacBattleData.battles.length == 0)
 	{
 		console.log('D random render')
+		console.log(popularLeaders)
+		let leader_num = 0
 		for (let i = 0; i < 5; i++)
 		{
 			unit_row = []
 			for (let j = 0; j < 5; j++)
 			{
-				let rnd = Math.floor(Math.random() * allUnits.length)
+				
+				if (popularLeaders) { rnd = popularLeaders.defenders[leader_num]-1 }
+				else { rnd = Math.floor(Math.random() * allUnits.length); console.log('rnd') }
+				
 				unit_row.push(allUnits[rnd])
+				leader_num++
 			}
 			unit_rows.push(<Team_row key={i} units={unit_row} side='defenders' />)
 		}

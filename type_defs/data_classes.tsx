@@ -9,6 +9,25 @@ export interface CC {
   type: string;
   value: string;
 }
+export interface DCSLRow {
+  id: number;
+  count: number;
+  long_desc: string;
+}
+export interface DCSeasonList {
+  season: number;
+  l3: DCSLRow[];
+  l6: DCSLRow[];
+  l9: DCSLRow[];
+}
+export interface DatacronCC {
+  side?: string;
+  ability_3?: number;
+  ability_6?: number;
+  ability_9?: number;
+  stat?: number;
+  stat_limit?: number;
+}
 export interface GacBattle {
   attackers: number[];
   defenders: number[];
@@ -19,7 +38,7 @@ export interface GacBattle {
 }
 export interface GacBattleData {
   battles: GacBattle[];
-  cc?: CC;
+  cc?: DatacronCC | CC;
   battlesCCin?: {
     [k: string]: unknown;
   }[];
@@ -30,7 +49,7 @@ export interface GacBattleData {
 export interface GacDataRequest {
   season: GacSeason;
   attackers?: Team;
-  defenders: Team;
+  defenders?: Team;
   constraints?: CC[];
   cutoff?: number;
 }
@@ -50,4 +69,8 @@ export interface Unit {
   image_url: string;
   unit_id: string;
   base_id: string;
+}
+export interface PopularLeaders {
+  attackers: number[];
+  defenders: number[];
 }

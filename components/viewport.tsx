@@ -23,8 +23,8 @@ function fetchT<T>(url:string):Promise<T> {
 }
 
 const Viewport = () => {
-  const {allGacSeasons,allGacSeasonsStatus,allUnits, allUnitStatus ,setStatic} = useStaticData() //useContext(StaticDataContext)
-  
+  const { popularLeadersStatus, popularLeaders, allGacSeasons, allGacSeasonsStatus, allUnits, allUnitStatus, setStatic } = useStaticData() //useContext(StaticDataContext)
+
   // original, working approach
   function getStatic<T>(current_status:string, url:string, variable_action:string, variable_status_action:string) {
     if ('unused'.search(current_status) >= 0) {
@@ -68,6 +68,7 @@ async function getStaticT(current_status:string, url:string, variable_action:str
   // both ways work
   useEffect(()=>{getStaticT(allUnitStatus, 'http://192.168.2.205:8000/characters', 'ALL_UNITS', 'ALL_UNITS_STATUS')})
   useEffect(()=>getStatic(allGacSeasonsStatus, 'http://192.168.2.205:8000/gac_events', 'ALL_GAC_SEASONS', 'ALL_GAC_SEASONS_STATUS'))
+  useEffect(()=>getStatic(popularLeadersStatus, 'http://192.168.2.205:8000/popular_leaders', 'POPULAR_LEADERS', 'POPULAR_LEADERS_STATUS'))
 
   return (
     <main className={styles.viewportMain}>

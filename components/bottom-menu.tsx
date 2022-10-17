@@ -24,18 +24,31 @@ async function fetchGacData(url:string, body:GacDataRequest) {
 }
 
 	const handleClick=(e:React.MouseEvent)=>{
-		if (defenderTeam === null || currentGac===null) {return}
+		if ((defenderTeam === null && attackerTeam===null ) || currentGac===null) {return}
 		const new_request:GacDataRequest = {
-			defenders:defenderTeam,
 			season: allGacSeasons[currentGac]
 		}
+		if (defenderTeam !== null) { new_request.defenders = defenderTeam }
 		if (attackerTeam !== null) {new_request.attackers=attackerTeam}
+		console.log(new_request)
 		fetchGacData(base_url + 'fetch_gac_data', new_request)
+	}
+
+	const handleClickClear = () => {
+		setAppData({ type: 'ATTACKER_TEAM', value: null })
+		setAppData({ type: 'DEFENDER_TEAM', value: null })
+		setAppData({ type: 'ATTACKER_DC', value: null })
+		setAppData({ type: 'DEFENDER_DC', value: null })
+		setAppData({ type: 'GAC_BATTLE_DATA', value: {battles:[]} })
 	}
 
 
 	return (
 		<div className={styles.bottomMenuDiv}>
+			<Button variant='outlined' id="basic-button" onClick={handleClickClear}>
+				Clear
+			</Button>
+
 			<Button variant='outlined' id="basic-button" onClick={handleClick}>
 				Fetch Server Data
 			</Button>

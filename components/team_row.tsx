@@ -5,10 +5,14 @@ import styles_defenders from "../styles/combat-row1-right.module.css";
 import { useAppData } from '../contexts/app_data_context_provider';
 import { addUnitToTeam, copyTeam } from '../type_defs/gac_objects';
 import { useStaticData } from '../contexts/static_data_context_provider';
+import { Box, Button, IconButton, Stack } from '@mui/material';
+import FlagIcon from '@mui/icons-material/Flag'
 
 
-const Team_row = ({units, side}:{units:UnitList, side:string}) => {
-    const {attackerTeam, defenderTeam, setAppData} = useAppData()
+const Team_row = ({units, side, wins=0, losses=0, avg_banners=0, win_percent=0 }:
+    {units: UnitList, side: string, wins?:number, losses?:number, avg_banners?:number, win_percent?:number }) => {
+
+    const {attackerTeam, defenderTeam, gacBattleData ,setAppData} = useAppData()
     const {allUnits} = useStaticData()
 
     const handleClick = (key: string, side_:string) => {
@@ -32,17 +36,26 @@ const Team_row = ({units, side}:{units:UnitList, side:string}) => {
             default: { console.error('wrong side ', side) }
         }
     }
-
+    
     const row = units ? units.map((unit, index) =>
-        (<Unit_avatar onClick={() => (handleClick(unit.base_id, side))} key={unit.base_id + index} unit={units[index]} leader={index == 0} />)) : []
+        (<IconButton key={unit.base_id + index} onClick={() => (handleClick(unit.base_id, side))} > <Unit_avatar key={unit.base_id + index} unit={units[index]} leader={index == 0} /> </IconButton>)) : []
 
     let styles
-    if (side==='attackers') {styles=styles_attackers.combatRow1Left}
-    else {styles=styles_defenders.combatRow1Right}
-
+    let stats = null
+    if (side === 'defenders') {styles = styles_defenders.combatRow1Right}
+    else {styles = styles_attackers.combatRow1Left
+        if (gacBattleData.battles.length !== 0) {
+            stats = (<>
+                <Box sx={{padding: '15px', fontSize: 'medium' }}> <strong>Seen</strong><br/>{wins+losses}  </Box> 
+                <Box sx={{padding: '0px', fontSize: 'medium' }}><strong>win %</strong><br />{win_percent}  </Box>
+                <Box sx={{padding: '10px', fontSize: 'medium'}}> <strong>avg</strong> <FlagIcon sx={{fontSize:'16px'}} /><br/>{avg_banners}  </Box>
+            </>)
+        }
+    }
+    
     return (
         <div className={styles}>
-        {row}
+        {row} {stats}
         </div>
     )
 }

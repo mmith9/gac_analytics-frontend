@@ -8,5 +8,5 @@
   box-sizing: border-box;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--gap-sm);
+  gap: 0;
 }

@@ -2,7 +2,8 @@ import { Team, Unit } from "./data_classes";
 
 export function addUnitToTeam(newUnit:Unit, team:Team|null) {
     if (team===null) {team = {leader : newUnit, members:[newUnit]}; return team}
-    if (team.members.length >=5) {console.warn('team allready full ',team); return team}
+    if (team.members.length >=5) {console.log('team allready full ',team); return team}
+    if (team.members.includes(newUnit)) {console.log('unit already in team'); return team}
     team.members.push(newUnit); return team
 }
 
