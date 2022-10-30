@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useReducer ,useContext, useState, ReducerWithoutAction } from "react";
-import { PopularLeaders } from "../type_defs/data_classes";
+// import { PopularLeaders } from "../type_defs/data_classes";
 
 import { GacSeasonList, UnitList } from "../type_defs/data_types";
 
@@ -9,7 +9,7 @@ interface StaticDataInterface {
   allUnitStatus:string
   allGacSeasonsStatus:string,
   setStatic: React.Dispatch<Action>,
-  popularLeaders:PopularLeaders | null,
+  //popularLeaders:PopularLeaders | null,
   popularLeadersStatus:string
 }
 
@@ -20,7 +20,7 @@ const empty_specimen:StaticDataInterface = {
   allUnitStatus:'unused',
   allGacSeasonsStatus:'unused',
   setStatic:warnNoContext,
-  popularLeaders:null,
+  //popularLeaders:null,
   popularLeadersStatus:'unused'
 }
 
@@ -52,12 +52,12 @@ function staticDataReducer(state:StaticDataInterface, action:Action):StaticDataI
     case 'ALL_GAC_SEASONS_STATUS':{
       return {...state, allGacSeasonsStatus: action.value}
     }
-    case 'POPULAR_LEADERS': {
-      return { ...state, popularLeaders: action.value }
-    }
-    case 'POPULAR_LEADERS_STATUS': {
-      return { ...state, popularLeadersStatus: action.value }
-    }
+    // case 'POPULAR_LEADERS': {
+    //   return { ...state, popularLeaders: action.value }
+    // }
+    // case 'POPULAR_LEADERS_STATUS': {
+    //   return { ...state, popularLeadersStatus: action.value }
+    // }
 
 
     default:{

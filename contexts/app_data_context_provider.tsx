@@ -6,14 +6,15 @@ interface Action {
   value?:any
 }
 
-import {UnitDialogProps, unitDialogProps_init} from '../components/unit_dialog'
+import {DatacronDialogProps, datacronDialogProps_init, UnitDialogProps, unitDialogProps_init} from '../type_defs/dialogs'
 
 interface AppDataInterface {
-  currentGac:number |null,
+  currentGac:number,
   defenderTeam:Team |null,
   attackerTeam:Team |null,
   setAppData: React.Dispatch<Action>,
   unitDialogProps: UnitDialogProps,
+  datacronDialogProps: DatacronDialogProps,
   gacBattleData: GacBattleData,
   defenderDC: DatacronCC |null,
   attackerDC: DatacronCC |null
@@ -25,6 +26,7 @@ const empty_specimen:AppDataInterface={
   defenderTeam:null,
   attackerTeam:null,
   setAppData:warnNoContext,
+  datacronDialogProps: datacronDialogProps_init,
   unitDialogProps: unitDialogProps_init,
   gacBattleData: {battles:[]},
   defenderDC: null,
@@ -46,6 +48,9 @@ function appDataReducer(state:AppDataInterface, action:Action):AppDataInterface 
     }
     case 'UNIT_DIALOG':{
       return {...state,unitDialogProps : action.value}
+    }
+    case 'DATACRON_DIALOG': {
+      return { ...state, datacronDialogProps: action.value }
     }
     case 'GAC_BATTLE_DATA': {
       return { ...state, gacBattleData: action.value }

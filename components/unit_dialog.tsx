@@ -16,17 +16,8 @@ import { blue } from '@mui/material/colors';
 import DebouncedTextInput from './debounced_text_input';
 import { addUnitToTeam, copyTeam } from "../type_defs/gac_objects";
 import { Team } from "../type_defs/data_classes";
-
-export interface UnitDialogProps {
-    open: boolean;
-    selectedValue: string;
-    onClose: Function;
-    side: string;  
-
-}
-  export const unitDialogProps_init:UnitDialogProps = {
-    open:false, selectedValue:'', onClose:()=>{}, side:'',
-}
+import { UnitDialogProps } from "../type_defs/dialogs";
+import { ListItemButton } from "@mui/material";
 
 function UnitDialog(props: UnitDialogProps) {
 
@@ -84,14 +75,14 @@ function UnitDialog(props: UnitDialogProps) {
                     <DebouncedTextInput setParentInput={setUser_input} />
 
                     {filtered_units.map((unit, index) => (
-                        <ListItem button onClick={() => handleListItemClick(unit.base_id, side)} key={unit.base_id}>
+                        <ListItemButton onClick={() => handleListItemClick(unit.base_id, side)} key={unit.base_id}>
                             <ListItemAvatar>
                                 <Avatar src={unit.image_url} sx={{ bgcolor: blue[100], color: blue[600] }}>
                           
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText primary={unit.name} />
-                        </ListItem>
+                        </ListItemButton>
                     ))}
 
 

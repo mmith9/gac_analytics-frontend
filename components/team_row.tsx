@@ -38,7 +38,9 @@ const Team_row = ({units, side, wins=0, losses=0, avg_banners=0, win_percent=0 }
     }
     
     const row = units ? units.map((unit, index) =>
-        (<IconButton key={unit.base_id + index} onClick={() => (handleClick(unit.base_id, side))} > <Unit_avatar key={unit.base_id + index} unit={units[index]} leader={index == 0} /> </IconButton>)) : []
+        (<IconButton key={unit.base_id + index} onClick={
+            () => (handleClick(unit.base_id, side))} > <Unit_avatar key={unit.base_id + index} 
+            unit={unit} leader={index == 0} /> </IconButton>)) : []
 
     let styles
     let stats = null

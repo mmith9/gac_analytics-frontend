@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import axios from "axios";
+
 import { FunctionComponent } from "react";
 //import { useQuery } from "react-query";
 import { useAppData } from "../contexts/app_data_context_provider";
@@ -7,7 +7,7 @@ import { useStaticData } from "../contexts/static_data_context_provider";
 
 import styles from "../styles/bottom-menu.module.css";
 import { GacBattle, GacDataRequest } from "../type_defs/data_classes";
-
+const axios = require('axios').default;
 
 
 const BottomMenu: FunctionComponent = () => {
@@ -17,6 +17,7 @@ const BottomMenu: FunctionComponent = () => {
 	const {currentGac,attackerTeam, defenderTeam, setAppData} = useAppData()
 	
 async function fetchGacData(url:string, body:GacDataRequest) {
+	console.log(body)
 	const response = await axios.post(url,body)
 	const data = response.data
 	console.log(response)

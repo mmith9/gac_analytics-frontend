@@ -40,10 +40,9 @@ const MenuCenter: FunctionComponent = () => {
       index: number,
     ) => {
       setSelectedIndex(index);
-      console.log(index)
       setAnchorEl(null);
-      setAppData({type:'CURRENT_GAC', value:index})
-
+      setAppData({type:'CURRENT_GAC', value:allGacSeasons[index].season})
+      console.log(allGacSeasons[index].season)
     };
   
     const handleClose = () => {

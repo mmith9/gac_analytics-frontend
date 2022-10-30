@@ -69,8 +69,16 @@ export interface Unit {
   image_url: string;
   unit_id: string;
   base_id: string;
+  count?: number;
 }
-export interface PopularLeaders {
-  attackers: number[];
-  defenders: number[];
+export interface PORow {
+  id: number;
+  count: number;
+  name: string;
+  opt1?: string;
+}
+export interface PrecalcObject {
+  season: number;
+  item_type: string;
+  payload: PORow[];
 }

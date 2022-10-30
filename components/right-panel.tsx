@@ -5,11 +5,13 @@ import { useAppData } from '../contexts/app_data_context_provider';
 import { blue } from '@mui/material/colors';
 
 const RightPanel: FunctionComponent = () => {
-    const {unitDialogProps, defenderTeam ,setAppData} = useAppData()
+    const {defenderTeam ,setAppData} = useAppData()
 
-    const handleClick = ()=> setAppData({type:'UNIT_DIALOG', value:{open:true, side:'defender'}})
-  
-    let add_button_disabled:boolean=false
+    const handleClick_add_unit = ()=> setAppData({type:'UNIT_DIALOG', value:{open:true, side:'defender'}})
+    const handleClick_add_datacron = () => setAppData({ type: 'DATACRON_DIALOG', value: { open: true, side: 'defender' } })
+
+    let add_datacron_button_disabled = false
+    let add_button_disabled=false
     let add_button_text:string=''
 
     if (defenderTeam === null) {
@@ -31,7 +33,7 @@ const RightPanel: FunctionComponent = () => {
                 <List sx={{ pt: 0 }}>
 
                     {defenderTeam ? defenderTeam.members.map((unit, index) => (
-                        <ListItem button onClick={() => { }} key={index}>
+                        <ListItem button onClick={() => { }} key={unit.base_id}>
                             <ListItemAvatar>
                                 <Avatar src={unit.image_url} sx={{ bgcolor: blue[100], color: blue[600] }}/>
                             </ListItemAvatar>
@@ -41,9 +43,13 @@ const RightPanel: FunctionComponent = () => {
 
                 </List>
                 <Box sx={{ display: 'flex', height: '100%' }}></Box>
-                <Button disabled={add_button_disabled} variant='outlined' id="basic-button" onClick={handleClick}>
+                <Button disabled={add_button_disabled} variant='outlined' id="basic-button" onClick={handleClick_add_unit}>
                     {add_button_text}
                 </Button>
+                <Button disabled={add_datacron_button_disabled} variant='outlined' id="basic-button" onClick={handleClick_add_datacron}>
+                    Add datacron
+                </Button>
+
             </Paper>
         </div>
 

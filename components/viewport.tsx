@@ -7,6 +7,7 @@ import {UnitList} from '../type_defs/data_types'
 import { useStaticData } from "../contexts/static_data_context_provider";
 import Overlays from '../components/overlays'
 import BottomMenu from "./bottom-menu";
+import { useAppData } from "../contexts/app_data_context_provider";
 
 function fetchT<T>(url:string):Promise<T> {
   return (fetch(url)
@@ -23,7 +24,7 @@ function fetchT<T>(url:string):Promise<T> {
 }
 
 const Viewport = () => {
-  const { popularLeadersStatus, popularLeaders, allGacSeasons, allGacSeasonsStatus, allUnits, allUnitStatus, setStatic } = useStaticData() //useContext(StaticDataContext)
+  const { popularLeadersStatus,  allGacSeasons, allGacSeasonsStatus, allUnits, allUnitStatus, setStatic } = useStaticData() //useContext(StaticDataContext)
 
   // original, working approach
   function getStatic<T>(current_status:string, url:string, variable_action:string, variable_status_action:string) {
@@ -65,10 +66,17 @@ async function getStaticT(current_status:string, url:string, variable_action:str
       }  
     }
   }
+ 
   // both ways work
   useEffect(()=>{getStaticT(allUnitStatus, 'http://192.168.2.205:8000/characters', 'ALL_UNITS', 'ALL_UNITS_STATUS')})
   useEffect(()=>getStatic(allGacSeasonsStatus, 'http://192.168.2.205:8000/gac_events', 'ALL_GAC_SEASONS', 'ALL_GAC_SEASONS_STATUS'))
-  useEffect(()=>getStatic(popularLeadersStatus, 'http://192.168.2.205:8000/popular_leaders', 'POPULAR_LEADERS', 'POPULAR_LEADERS_STATUS'))
+//  useEffect(()=>getStatic(popularLeadersStatus, 'http://192.168.2.205:8000/popular_leaders', 'POPULAR_LEADERS', 'POPULAR_LEADERS_STATUS'))
+
+  const {setAppData} = useAppData()
+  useEffect(()=>{
+    if (allGacSeasons.length>0) {setAppData({type:'CURRENT_GAC', value:allGacSeasons[0].season})}
+  },[allGacSeasons, setAppData])
+
 
   return (
     <main className={styles.viewportMain}>
