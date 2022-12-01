@@ -28,14 +28,13 @@ export const Defenders = () =>{
 		//console.log(response)
 		const data = response.data.payload
 		setdefLeaders(data)
-
 	}
 
 	let unit_rows: JSX.Element[] = []
 	let current_season:number
 	
 	if (currentGac !=0) {current_season = currentGac}
-	else (current_season = 30)
+	else (current_season = 32)
 	
 	const url = 'http://192.168.2.205:8000/precalcs/?season=' + current_season + '&item_type=def_lead'
 	//console.log(url)

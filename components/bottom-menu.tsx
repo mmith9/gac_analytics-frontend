@@ -26,11 +26,18 @@ async function fetchGacData(url:string, body:GacDataRequest) {
 
 	const handleClick=(e:React.MouseEvent)=>{
 		if ((defenderTeam === null && attackerTeam===null ) || currentGac===null) {return}
+		let index=-1
+		for (let i=0; i < allGacSeasons.length; i++) {
+			if (allGacSeasons[i].season === currentGac) {index=i;break}
+		}
+		if (index<0){return}
 		const new_request:GacDataRequest = {
-			season: allGacSeasons[currentGac]
+			season: allGacSeasons[index]
 		}
 		if (defenderTeam !== null) { new_request.defenders = defenderTeam }
 		if (attackerTeam !== null) {new_request.attackers=attackerTeam}
+		console.log(currentGac)
+		console.log
 		console.log(new_request)
 		fetchGacData(base_url + 'fetch_gac_data', new_request)
 	}

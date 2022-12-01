@@ -20,7 +20,7 @@ const Attackers: FunctionComponent = () =>
 	let current_gac:number
 
 	if (currentGac>0) {current_gac = currentGac}
-	else {current_gac = 30}
+	else {current_gac = 32}
 
 	const url = 'http://192.168.2.205:8000/precalcs/?season=' + current_gac + '&item_type=att_lead'
 

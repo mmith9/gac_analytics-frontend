@@ -5,28 +5,17 @@
 /* Do not modify it by hand - just update the pydantic models and then re-run the script
 */
 
-export interface CC {
-  type: string;
-  value: string;
-}
-export interface DCSLRow {
-  id: number;
-  count: number;
-  long_desc: string;
-}
-export interface DCSeasonList {
-  season: number;
-  l3: DCSLRow[];
-  l6: DCSLRow[];
-  l9: DCSLRow[];
-}
 export interface DatacronCC {
-  side?: string;
   ability_3?: number;
   ability_6?: number;
   ability_9?: number;
-  stat?: number;
-  stat_limit?: number;
+  stat_limits?: StatLimit[];
+}
+export interface StatLimit {
+  stat_id: number;
+  stat_min: number;
+  stat_max: number;
+  stat_name?: string;
 }
 export interface GacBattle {
   attackers: number[];
@@ -38,7 +27,6 @@ export interface GacBattle {
 }
 export interface GacBattleData {
   battles: GacBattle[];
-  cc?: DatacronCC | CC;
   battlesCCin?: {
     [k: string]: unknown;
   }[];
@@ -50,7 +38,6 @@ export interface GacDataRequest {
   season: GacSeason;
   attackers?: Team;
   defenders?: Team;
-  constraints?: CC[];
   cutoff?: number;
 }
 export interface GacSeason {
@@ -63,6 +50,8 @@ export interface GacSeason {
 export interface Team {
   leader: Unit;
   members: Unit[];
+  datacron?: DatacronCC;
+  stat_limits?: StatLimit[];
 }
 export interface Unit {
   name: string;
@@ -75,6 +64,7 @@ export interface PORow {
   id: number;
   count: number;
   name: string;
+  max_value?: number;
   opt1?: string;
 }
 export interface PrecalcObject {
