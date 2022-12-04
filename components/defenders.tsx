@@ -11,23 +11,28 @@ const axios = require('axios').default;
 
 export const Defenders = () =>{
 	//console.log('defenders render')
-	const { gacBattleData, currentGac, setAppData} = useAppData()
+	const { gacBattleData, currentGac, defenderTeam, setAppData} = useAppData()
 	const { allGacSeasons ,allUnits } = useStaticData()
 	const [defLeaders, setdefLeaders] = useState<[PORow] | null>(null)
+	const [unitsPerLeader, setUnitsPerLeader] = useState<[PORow] | null>(null)
 
-	async function fetcher(url: string)
+	async function fetch_leaders(url:string)
 	{
 		console.log('fetcher:', url)
 		let response
-		try {
-			response = await axios.get(url)
-		}
-		catch (err) {
-			console.log(err)
-		}
-		//console.log(response)
+		try {response = await axios.get(url)}
+		catch (err) {console.log(err)}
 		const data = response.data.payload
 		setdefLeaders(data)
+	}
+	async function fetch_units_for_leader(url: string)
+	{
+		console.log('fetcher:', url)
+		let response
+		try { response = await axios.get(url) }
+		catch (err) { console.log(err) }
+		const data = response.data.payload
+		setUnitsPerLeader(data)
 	}
 
 	let unit_rows: JSX.Element[] = []
@@ -37,36 +42,48 @@ export const Defenders = () =>{
 	else (current_season = 32)
 	
 	const url = 'http://192.168.2.205:8000/precalcs/?season=' + current_season + '&item_type=def_lead'
-	//console.log(url)
-	useEffect(() => { fetcher(url)},[url])
-	
+	useEffect(() => { fetch_leaders(url)},[url])
+	let leader
+	if (defenderTeam===null) {leader=0}
+	else {leader=defenderTeam.leader.unit_id}
+	const url2 = 'http://192.168.2.205:8000/precalcs/?season=' + current_season + '&item_type=def_units_per_lead'
+		+ '&leader=' + leader
+	useEffect(()=> {fetch_units_for_leader(url2)},[url2])
+
 	//console.log(defLeaders)
-	if (allUnits.length === 0 || defLeaders === null) { console.log('no render') ;return (<div className={styles.defendersDiv} />) } 
+	if (allUnits.length === 0 || ! (defLeaders)) { console.log('no render') ;return (<div className={styles.defendersDiv} />) } 
 
 	if (gacBattleData.battles.length === 0)
 	{
 		let unit_row: UnitList
 		let unit: Unit
 		let unit_id:number
-	
-		console.log('D ordered render')
-
-		let leader_num = 0
-		for (let i = 0; i < 8; i++)
-		{
-			unit_row = []
-			for (let j = 0; j < 5; j++)
-			{	
-				if (defLeaders[leader_num]) {
-					unit_id = defLeaders[leader_num].id -1 				
-					unit = {...allUnits[unit_id]}
-					unit.count = defLeaders[leader_num].count
-					
-					unit_row.push(unit)
-					leader_num++
+		let unit_num = 0
+		let unitsToDraw
+		if (defenderTeam===null) {
+			console.log('D ordered leaders render')
+			unitsToDraw=defLeaders}
+		else {
+			console.log('D ordered unit render')
+			unitsToDraw=unitsPerLeader
+		}
+		if (unitsToDraw===null) {}
+		else {
+			for (let i = 0; i < 8; i++)	{
+				unit_row = []
+				for (let j = 0; j < 5; j++)
+				{	
+					if (unitsToDraw.length>unit_num) {
+						unit_id = unitsToDraw[unit_num].id -1 				
+						unit = {...allUnits[unit_id]}
+						unit.count = unitsToDraw[unit_num].count
+						unit_row.push(unit)
+						unit_num++
+					}
+					else {break}
 				}
+				unit_rows.push(<Team_row key={i} units={unit_row} side='defenders' />)
 			}
-			unit_rows.push(<Team_row key={i} units={unit_row} side='defenders' />)
 		}
 	}
 	else

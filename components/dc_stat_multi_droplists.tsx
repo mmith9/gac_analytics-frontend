@@ -33,7 +33,7 @@ const DcStatsMultiDroplist = ({ initLimits, season, valueReturn }: { initLimits:
     const [allLimits, setAllLimits] = useState<[PORow] | null>(null)
 
     async function fetcher(url: string) {
-        console.log('fetcher:', url)
+        //console.log('fetcher:', url)
         let response
         try { response = await axios.get(url) }
         catch (err)
@@ -51,8 +51,8 @@ const DcStatsMultiDroplist = ({ initLimits, season, valueReturn }: { initLimits:
     if (!allLimits) {return (<></>)}
     return (
         <>
-            <Button onClick={addField}>click</Button>
-            {limits.map((limit, index) => (
+            <Button onClick={addField}>Add stats to datacron</Button>
+            {limits.map((limit, index) => (<>
             <Stack direction='row' key={index}>
                 <DcStatDroplist listIndex={index} currentLimit={limit} allLimits={allLimits} valueReturn={limitChange}/>
                 <Box justifyContent='center' sx={{ background: 'white' }}>
@@ -61,6 +61,8 @@ const DcStatsMultiDroplist = ({ initLimits, season, valueReturn }: { initLimits:
                     </Button>
                 </Box>
             </Stack>
+            <br></br>
+            </>
             ))}
         </>
     )
@@ -72,7 +74,11 @@ const DcStatDroplist = ({listIndex, currentLimit, allLimits, valueReturn}:{listI
     const getMaxOfStat = (stat_id: number) => {
         let the_max = 0
         for (let i = 0; i < allLimits.length; i++) {
-            if (allLimits[i].id == stat_id) {the_max = allLimits[i].max_value as number; console.log('foun'); break}
+            if (allLimits[i].id == stat_id) {
+                the_max = allLimits[i].max_value as number
+                //console.log('found') 
+                break
+            }
             //else {console.log(i, typeof(i))}
         }
         //console.log('max', stat_id, typeof(stat_id), the_max)
@@ -86,7 +92,7 @@ const DcStatDroplist = ({listIndex, currentLimit, allLimits, valueReturn}:{listI
             stat_min: 0, 
             stat_max: getMaxOfStat(Number(event.target.value))
         }
-        console.log('stat child set ', what, value)
+        //console.log('stat child set ', what, value)
         valueReturn(what, value)
     }
     const handleSlide = (event: Event, newValue:number | number[]) => {
@@ -113,24 +119,28 @@ const DcStatDroplist = ({listIndex, currentLimit, allLimits, valueReturn}:{listI
         )
     )
     menu_items.unshift(<MenuItem value={0} key='solo'> Not defined </MenuItem>)
-    console.log('limit of ', {currentLimit})
-    console.log('all limits', allLimits)
+    //console.log('limit of ', {currentLimit})
+    //console.log('all limits', allLimits)
     const as_percent = (a_float: number) =>{
         return (Math.round(a_float *10000)/100 +'%')
     }
 
     const marks = [{ value: 0, label: '0%' },
         { value: getMaxOfStat(currentLimit.stat_id), label: as_percent(getMaxOfStat(currentLimit.stat_id)) }]
+    if (currentLimit.stat_min !=0) {marks.push({value: currentLimit.stat_min, label:as_percent(currentLimit.stat_min)})}
+    if (currentLimit.stat_max != getMaxOfStat(currentLimit.stat_id)) { marks.push({ value: currentLimit.stat_max, label: as_percent(currentLimit.stat_max)})}
 
     return (
         <FormControl sx={{ width: '22vw' }}>
             <Select id='stat limit {index}' value={currentLimit.stat_id+''} onChange={handleSelect}>
                 {menu_items}
             </Select>
-            <Slider min={0} max={getMaxOfStat(currentLimit.stat_id)} step={0.00001} marks={marks} value={[currentLimit.stat_min, currentLimit.stat_max]} 
-            onChange={handleSlide} valueLabelDisplay="on" valueLabelFormat={as_percent}>
+            {currentLimit.stat_id != 0 ? 
+                <Slider min={0} max={getMaxOfStat(currentLimit.stat_id)} step={0.00001} marks={marks} value={[currentLimit.stat_min, currentLimit.stat_max]} 
+                onChange={handleSlide} valueLabelDisplay="auto" valueLabelFormat={as_percent}>
                 
-            </Slider>
+                </Slider>
+            :<></>}
         </FormControl>
     )
 }

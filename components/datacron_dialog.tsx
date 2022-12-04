@@ -30,7 +30,7 @@ function DatacronDialog(props: DatacronDialogProps)
     const { unitDialogProps, setAppData, defenderTeam, attackerTeam, currentGac } = useAppData()
     //const { allUnits, allUnitStatus } = useStaticData()
     //const [user_input, setUser_input] = useState('')
-    const [datacron, setDatacron] = useState({ability_3:0, ability_6:0, ability_9:0} as DatacronCC)
+    const [datacron, setDatacron] = useState({ability_3:0, ability_6:0, ability_9:0, stat_limits:[{stat_id:0, stat_min:0, stat_max:0}]} as DatacronCC)
 
     const handleClose = () =>  {  
         switch (side)
@@ -62,7 +62,9 @@ function DatacronDialog(props: DatacronDialogProps)
     }
     
     const valueReturnStats=(limits:StatLimit[])=>{
+        
         console.log(limits)
+        setDatacron({ ...datacron, stat_limits:limits })
     }
 
     const close_datacron_dialog = () =>
@@ -72,11 +74,6 @@ function DatacronDialog(props: DatacronDialogProps)
         console.log('DC DIALOG', datacron)
     }
 
-    var startTime = performance.now()
- 
-
-    var endTime = performance.now()
-    console.log(`Call to doSomething took ${endTime - startTime} milliseconds`)
     return (<>
         <Dialog onClose={handleClose} open={open} maxWidth={false} fullWidth={false}>
             <Box margin='15px' height='80vh' width='90vw' >
@@ -91,7 +88,7 @@ function DatacronDialog(props: DatacronDialogProps)
                     initValue={'' + datacron.ability_9} valueReturn={value_return} />
 
                 
-                <DcStatsMultiDroplist initLimits={[{ stat_id: 0, stat_limit: 0 }]} season={currentGac} valueReturn={valueReturnStats}/>
+                <DcStatsMultiDroplist initLimits={datacron.stat_limits} season={currentGac} valueReturn={valueReturnStats}/>
             </Box>
         </Dialog>
     </>

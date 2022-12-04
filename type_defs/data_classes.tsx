@@ -9,7 +9,7 @@ export interface DatacronCC {
   ability_3?: number;
   ability_6?: number;
   ability_9?: number;
-  stat_limits?: StatLimit[];
+  stat_limits: StatLimit[];
 }
 export interface StatLimit {
   stat_id: number;

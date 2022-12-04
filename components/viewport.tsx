@@ -24,7 +24,7 @@ function fetchT<T>(url:string):Promise<T> {
 }
 
 const Viewport = () => {
-  const { popularLeadersStatus,  allGacSeasons, allGacSeasonsStatus, allUnits, allUnitStatus, setStatic } = useStaticData() //useContext(StaticDataContext)
+  const { allGacSeasons, allGacSeasonsStatus, allUnits, allUnitStatus, setStatic } = useStaticData() //useContext(StaticDataContext)
 
   // original, working approach
   function getStatic<T>(current_status:string, url:string, variable_action:string, variable_status_action:string) {
