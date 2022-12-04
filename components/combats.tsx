@@ -1,28 +1,18 @@
 import { FunctionComponent } from "react";
-import Attackers from "../components/attackers";
-import {Defenders} from "../components/defenders";
+
+import {Teams} from "./teams";
 import styles from "../styles/combats.module.css";
-import { StaticDataContext } from "../contexts/static_data_context_provider";
+
 
 const Combats: FunctionComponent = () => {
   return (
     <div className={styles.combatsDiv}>
-      <Attackers />
-      <Defenders />
+      <Teams side='attackers' />
+      <Teams side='defenders' />
     </div>
   );
 };
 
-
-
-
-// const Attackers_ = () => {
-//   return(
-//     <StaticDataContext.Consumer>
-//       {({allUnits})=>{return (<Attackers key={allUnits.length} />)}}
-//     </StaticDataContext.Consumer>
-//   )
-// }
 
 
 export default Combats;
