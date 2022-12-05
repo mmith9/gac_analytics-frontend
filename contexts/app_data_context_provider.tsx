@@ -1,20 +1,21 @@
 import { createContext, ReactNode, useContext, useReducer} from "react";
-import {DatacronCC, GacBattleData, Team} from '../type_defs/data_classes'
+import {DatacronCC, GacBattleData, Team, TeamCC} from '../type_defs/data_classes'
 
 interface Action {
   type:string,
   value?:any
 }
 
-import {DatacronDialogProps, datacronDialogProps_init, UnitDialogProps, unitDialogProps_init} from '../type_defs/dialogs'
+import {DatacronDialogProps, datacronDialogProps_init, AddUnitDialogProps, addUnitDialogProps_init, TeamDialogProps_init, TeamDialogProps} from '../type_defs/dialogs'
 
 interface AppDataInterface {
   currentGac:number,
-  defenderTeam:Team |null,
-  attackerTeam:Team |null,
+  defenderTeam:TeamCC |null,
+  attackerTeam:TeamCC |null,
   setAppData: React.Dispatch<Action>,
-  unitDialogProps: UnitDialogProps,
+  unitDialogProps: AddUnitDialogProps,
   datacronDialogProps: DatacronDialogProps,
+  teamDialogProps: TeamDialogProps,
   gacBattleData: GacBattleData,
   defenderDC: DatacronCC |null,
   attackerDC: DatacronCC |null
@@ -27,7 +28,8 @@ const empty_specimen:AppDataInterface={
   attackerTeam:null,
   setAppData:warnNoContext,
   datacronDialogProps: datacronDialogProps_init,
-  unitDialogProps: unitDialogProps_init,
+  unitDialogProps: addUnitDialogProps_init,
+  teamDialogProps: TeamDialogProps_init,
   gacBattleData: {battles:[]},
   defenderDC: null,
   attackerDC: null

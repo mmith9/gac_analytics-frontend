@@ -15,32 +15,34 @@ import Box from '@mui/material/Box'
 import { blue } from '@mui/material/colors';
 import DebouncedTextInput from './debounced_text_input';
 import { addUnitToTeam, copyTeam } from "../type_defs/gac_objects";
-import { Team } from "../type_defs/data_classes";
-import { UnitDialogProps } from "../type_defs/dialogs";
+
+import { AddUnitDialogProps} from "../type_defs/dialogs";
 import { ListItemButton } from "@mui/material";
+import { UnitCC } from "../type_defs/data_classes";
 
-function UnitDialog(props: UnitDialogProps) {
+function AddUnitDialog(props: AddUnitDialogProps) {
 
-    const { onClose, selectedValue, open, side } = props;
+    const { open, side } = props;
     const {unitDialogProps, setAppData, defenderTeam, attackerTeam} = useAppData()
-    const {allUnits, allUnitStatus} = useStaticData()
+    const {allUnits} = useStaticData()
     const [user_input, setUser_input] = useState('')    
 
     const handleClose = () => {close_unit_dialog()}
 
     const handleListItemClick = (key: string, side_: string) => {
         console.log('list item click ', key)
-        const newUnit = allUnits.filter((unit)=>(unit.base_id==key))[0]
+        const newUnitProps = allUnits.filter((unit)=>(unit.base_id==key))[0]
+        const newUnit:UnitCC = {unit_id:Number(newUnitProps.unit_id), stat_limits:[] }
         console.log(newUnit)
         switch (side_) {
-            case 'defender':{
+            case 'defenders':{
                 let newTeam=copyTeam(defenderTeam)
                 newTeam = addUnitToTeam(newUnit, newTeam)
                 console.log('added unit to team', newTeam)
                 setAppData({type: 'DEFENDER_TEAM', value:newTeam})
                 break
             }
-            case 'attacker':{
+            case 'attackers':{
                 let newTeam=copyTeam(attackerTeam)
                 newTeam = addUnitToTeam(newUnit, newTeam)
                 setAppData({ type: 'ATTACKER_TEAM', value: newTeam })
@@ -92,4 +94,4 @@ function UnitDialog(props: UnitDialogProps) {
     );
 }
 
-export default UnitDialog
+export default AddUnitDialog

@@ -3,12 +3,6 @@ import { useAppData } from '../contexts/app_data_context_provider'
 import { UnitList } from '../type_defs/data_types';
 import { useEffect, useState } from 'react';
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import PersonIcon from '@mui/icons-material/Person';
 import Box from '@mui/material/Box'
@@ -26,31 +20,33 @@ const axios = require('axios').default;
 function DatacronDialog(props: DatacronDialogProps)
 {
 
-    const { onClose, selectedValue, open, side } = props;
-    const { unitDialogProps, setAppData, defenderTeam, attackerTeam, currentGac } = useAppData()
+    const { open, side } = props;
+    const { setAppData, defenderTeam, attackerTeam, currentGac } = useAppData()
     //const { allUnits, allUnitStatus } = useStaticData()
     //const [user_input, setUser_input] = useState('')
-    const [datacron, setDatacron] = useState({ability_3:0, ability_6:0, ability_9:0, stat_limits:[{stat_id:0, stat_min:0, stat_max:0}]} as DatacronCC)
+    const [datacronAtt, setDatacronAtt] = useState({ ability_3: 0, ability_6: 0, ability_9: 0, stat_limits: [{ stat_id: 0, stat_min: 0, stat_max: 0 }] } as DatacronCC)    
+    const [datacronDef, setDatacronDef] = useState({ ability_3: 0, ability_6: 0, ability_9: 0, stat_limits: [{ stat_id: 0, stat_min: 0, stat_max: 0 }] } as DatacronCC)
+
+    const datacron = (side=='attackers') ? datacronAtt : datacronDef
+    const setDatacron = (side=='attackers') ? setDatacronAtt : setDatacronDef
 
     const handleClose = () =>  {  
         switch (side)
         {
-            case 'defender': {
-                const newTeam = addDatacronToTeam(datacron, defenderTeam)
-                setAppData({ type: 'DEFENDER_TEAM', value: newTeam })
-                break
-            }
-            case 'attacker': {
+            case 'attackers': {
                 const newTeam = addDatacronToTeam(datacron, attackerTeam)
                 setAppData({ type: 'ATTACKER_TEAM', value: newTeam })
+                break
+            }
+            case 'defenders': {
+                const newTeam = addDatacronToTeam(datacron, defenderTeam)
+                setAppData({ type: 'DEFENDER_TEAM', value: newTeam })
                 break
             }
             default: { console.error('wrong side ', side) }
         }
         close_datacron_dialog()
     }
-
-
 
     const value_return=(what:string, value:number)=>{
    //     console.log(what, value)
@@ -62,16 +58,14 @@ function DatacronDialog(props: DatacronDialogProps)
     }
     
     const valueReturnStats=(limits:StatLimit[])=>{
-        
-        console.log(limits)
+        //console.log(limits)
         setDatacron({ ...datacron, stat_limits:limits })
     }
 
     const close_datacron_dialog = () =>
     {
         setAppData({ type: 'DATACRON_DIALOG', value: { open: false, side: '' } })
-
-        console.log('DC DIALOG', datacron)
+        //console.log('DC DIALOG', datacron)
     }
 
     return (<>

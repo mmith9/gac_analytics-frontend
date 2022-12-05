@@ -1,6 +1,6 @@
 import { DatacronCC } from "./data_classes";
 
-export interface UnitDialogProps
+export interface AddUnitDialogProps
 {
     open: boolean;
     selectedValue: string;
@@ -8,19 +8,30 @@ export interface UnitDialogProps
     side: string;
 }
 
-export const unitDialogProps_init: UnitDialogProps = {
+export const addUnitDialogProps_init: AddUnitDialogProps = {
     open: false, selectedValue: '', onClose: () => { }, side: '',
 }
 
 export interface DatacronDialogProps
 {
     open: boolean;
-    selectedValue: DatacronCC;
     onClose: Function;
     side: string;
 }
 
 export const datacronDialogProps_init: DatacronDialogProps = {
-    open: false, selectedValue: {}, onClose: () => { }, side: '',
+    open: false, onClose: () => { }, side: '',
 }
+
+export interface TeamDialogProps
+{
+    open: boolean;
+    onClose: Function;
+    side: string;
+}
+
+export const TeamDialogProps_init: TeamDialogProps = {
+    open: false, onClose: () => { }, side: '',
+}
+
 

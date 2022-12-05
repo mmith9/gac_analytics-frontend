@@ -6,7 +6,7 @@ import { UnitList } from "../type_defs/data_types";
 import Team_row from "./team_row";
 import { useAppData } from "../contexts/app_data_context_provider";
 
-import { PORow, PrecalcObject, Unit } from "../type_defs/data_classes";
+import { PORow, PrecalcObject, Unit, UnitFreq } from "../type_defs/data_classes";
 import { apiUrl } from "../type_defs/settings";
 const axios = require('axios').default;
 
@@ -36,9 +36,8 @@ export const Teams = ({side}:{side:string}) =>{
 	const styles = (side == 'defenders') ? defender_styles.defendersDiv : attacker_styles.attackersDiv
 
 	const leader_url = apiUrl+'precalcs/?season=' + current_season + '&item_type='+side_abbr+'lead'
-	let leader
-	if (theTeam===null) {leader=0}
-	else {leader=theTeam.leader.unit_id}
+	let leader = 0
+	if (theTeam && theTeam.leader) {leader=theTeam.leader.unit_id}
 	const unit_url = apiUrl+'precalcs/?season=' + current_season + '&item_type='+side_abbr+'units_per_lead'
 		+ '&leader=' + leader
 
@@ -50,7 +49,7 @@ export const Teams = ({side}:{side:string}) =>{
 	if (gacBattleData.battles.length === 0)
 	{
 		let unit_row: UnitList
-		let unit: Unit
+		let unit: UnitFreq
 		let unit_id:number
 		let unit_num = 0
 		let unitsToDraw

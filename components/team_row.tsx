@@ -7,6 +7,7 @@ import { addUnitToTeam, copyTeam } from '../type_defs/gac_objects';
 import { useStaticData } from '../contexts/static_data_context_provider';
 import { Box, Button, IconButton, Stack } from '@mui/material';
 import FlagIcon from '@mui/icons-material/Flag'
+import { UnitCC } from '../type_defs/data_classes';
 
 
 const Team_row = ({units, side, wins=0, losses=0, avg_banners=0, win_percent=0 }:
@@ -17,7 +18,9 @@ const Team_row = ({units, side, wins=0, losses=0, avg_banners=0, win_percent=0 }
 
     const handleClick = (key: string, side_:string) => {
         console.log('list item click ', key)
-        const newUnit = allUnits.filter((unit) => (unit.base_id == key))[0]
+        const newUnitProps = allUnits.filter((unit) => (unit.base_id == key))[0]
+        const newUnit: UnitCC = { unit_id: Number(newUnitProps.unit_id), stat_limits: [] }
+        //const newUnit = allUnits.filter((unit) => (unit.base_id == key))[0]
         console.log(newUnit)
         switch (side_){
             case 'defenders': {

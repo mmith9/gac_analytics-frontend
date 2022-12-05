@@ -15,7 +15,10 @@ export interface StatLimit {
   stat_id: number;
   stat_min: number;
   stat_max: number;
-  stat_name?: string;
+}
+export interface Freq {
+  id: number;
+  count: number;
 }
 export interface GacBattle {
   attackers: number[];
@@ -36,8 +39,9 @@ export interface GacBattleData {
 }
 export interface GacDataRequest {
   season: GacSeason;
-  attackers?: Team;
-  defenders?: Team;
+  attackers?: TeamCC;
+  defenders?: TeamCC;
+  win_conditions?: WinCC;
   cutoff?: number;
 }
 export interface GacSeason {
@@ -47,28 +51,47 @@ export interface GacSeason {
   startDate?: string;
   endDate?: string;
 }
+export interface TeamCC {
+  leader?: UnitCC;
+  members: UnitCC[];
+  datacron?: DatacronCC;
+}
+export interface UnitCC {
+  unit_id: number;
+  stat_limits: StatLimit[];
+}
+export interface WinCC {
+  attempt?: number[];
+  defenders_start: number[];
+  defenders_end: number[];
+}
+export interface PORow {
+  id: number;
+  count: number;
+  name?: string;
+  max_value?: number;
+  opt1?: string;
+  units?: Freq[];
+}
+export interface PrecalcObject {
+  season: number;
+  item_type: string;
+  payload: PORow[];
+}
 export interface Team {
   leader: Unit;
   members: Unit[];
-  datacron?: DatacronCC;
-  stat_limits?: StatLimit[];
 }
 export interface Unit {
   name: string;
   image_url: string;
   unit_id: string;
   base_id: string;
-  count?: number;
 }
-export interface PORow {
-  id: number;
-  count: number;
+export interface UnitFreq {
   name: string;
-  max_value?: number;
-  opt1?: string;
-}
-export interface PrecalcObject {
-  season: number;
-  item_type: string;
-  payload: PORow[];
+  image_url: string;
+  unit_id: string;
+  base_id: string;
+  count?: number;
 }

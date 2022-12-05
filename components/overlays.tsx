@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAppData } from '../contexts/app_data_context_provider'
-import DatacronDialog from './datacron_dialog';
-import UnitDialog from './unit_dialog'
+import DatacronDialog from './dialog_datacron_props';
+import UnitDialog from './dialog_add_unit'
 
 const Overlays=()=>{
     const {datacronDialogProps,unitDialogProps, setAppData} = useAppData()
