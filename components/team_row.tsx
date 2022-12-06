@@ -14,13 +14,13 @@ const Team_row = ({units, side, wins=0, losses=0, avg_banners=0, win_percent=0 }
     {units: UnitList, side: string, wins?:number, losses?:number, avg_banners?:number, win_percent?:number }) => {
 
     const {attackerTeam, defenderTeam, gacBattleData ,setAppData} = useAppData()
-    const {allUnits} = useStaticData()
+    const {unit_dict} = useStaticData()
 
     const handleClick = (key: string, side_:string) => {
         console.log('list item click ', key)
-        const newUnitProps = allUnits.filter((unit) => (unit.base_id == key))[0]
+        const newUnitProps = unit_dict.filter((unit) => (unit.base_id == key))[0]
         const newUnit: UnitCC = { unit_id: Number(newUnitProps.unit_id), stat_limits: [] }
-        //const newUnit = allUnits.filter((unit) => (unit.base_id == key))[0]
+        //const newUnit = unit_dict.filter((unit) => (unit.base_id == key))[0]
         console.log(newUnit)
         switch (side_){
             case 'defenders': {

@@ -1,23 +1,30 @@
 import * as React from 'react';
 import { useAppData } from '../contexts/app_data_context_provider'
 import DatacronDialog from './dialog_datacron_props';
-import UnitDialog from './dialog_add_unit'
+import AddUnitDialog from './dialog_add_unit'
+import TeamDialog from './dialog_team';
 
 const Overlays=()=>{
-    const {datacronDialogProps,unitDialogProps, setAppData} = useAppData()
+    const {datacronDialogProps,unitDialogProps, teamDialogProps, setAppData} = useAppData()
     return (
         <>
-            <UnitDialog 
+            <AddUnitDialog 
                 open={unitDialogProps.open} 
                 onClose={unitDialogProps.onClose} 
-                selectedValue={unitDialogProps.selectedValue}
+ 
                 side={unitDialogProps.side}
             />
             <DatacronDialog
                 open={datacronDialogProps.open}
                 onClose={datacronDialogProps.onClose}
-                selectedValue={datacronDialogProps.selectedValue}
+
                 side={datacronDialogProps.side}
+            />
+            <TeamDialog
+                open={teamDialogProps.open}
+                onClose={teamDialogProps.onClose}
+
+                side={teamDialogProps.side}
             />
 
         </>

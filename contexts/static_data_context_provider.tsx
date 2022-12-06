@@ -1,16 +1,21 @@
 import { createContext, ReactNode, useReducer ,useContext, useState, ReducerWithoutAction } from "react";
-// import { PopularLeaders } from "../type_defs/data_classes";
+import { Unit, Zuo, DcMechanic, UnitStat, DcStat } from "../type_defs/data_classes";
 
 import { GacSeasonList, UnitList } from "../type_defs/data_types";
+
+
 
 interface StaticDataInterface {
   allUnits:UnitList,
   allGacSeasons: GacSeasonList,
-  allUnitStatus:string
+  allUnitStatus:string,
   allGacSeasonsStatus:string,
+  unit_dict: Unit[];
+  zuo_dict: Zuo[];
+  dc_mc_dict: DcMechanic[];
+  unit_stat_dict: UnitStat[];
+  dc_stat_dict: DcStat[];
   setStatic: React.Dispatch<Action>,
-  //popularLeaders:PopularLeaders | null,
-  popularLeadersStatus:string
 }
 
 const warnNoContext = () => console.warn('no static context provider')
@@ -19,9 +24,13 @@ const empty_specimen:StaticDataInterface = {
   allGacSeasons: [],
   allUnitStatus:'unused',
   allGacSeasonsStatus:'unused',
+  unit_dict: [],
+  zuo_dict: [],
+  dc_mc_dict: [],
+  unit_stat_dict: [],
+  dc_stat_dict: [],
   setStatic:warnNoContext,
-  //popularLeaders:null,
-  popularLeadersStatus:'unused'
+
 }
 
 const StaticDataContext = createContext(empty_specimen)
@@ -31,9 +40,6 @@ interface Action {
   type:string,
   value?:any
 }
-
-
-
 
 function staticDataReducer(state:StaticDataInterface, action:Action):StaticDataInterface {
   //console.log('entered reducer ', action)
@@ -52,13 +58,17 @@ function staticDataReducer(state:StaticDataInterface, action:Action):StaticDataI
     case 'ALL_GAC_SEASONS_STATUS':{
       return {...state, allGacSeasonsStatus: action.value}
     }
-    // case 'POPULAR_LEADERS': {
-    //   return { ...state, popularLeaders: action.value }
-    // }
-    // case 'POPULAR_LEADERS_STATUS': {
-    //   return { ...state, popularLeadersStatus: action.value }
-    // }
-
+     case 'ALL_DICTS': {
+      const newState = {...state}
+      newState.unit_dict = action.value.unit_dict
+      newState.zuo_dict = action.value.zuo_dict
+      newState.dc_mc_dict = action.value.dc_mc_dict
+      newState.unit_stat_dict = action.value.unit_stat_dict 
+      newState.dc_stat_dict = action.value.dc_stat_dict
+      //console.log(newState)
+      return newState
+    }
+    
 
     default:{
       return state

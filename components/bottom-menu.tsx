@@ -7,12 +7,13 @@ import { useStaticData } from "../contexts/static_data_context_provider";
 
 import styles from "../styles/bottom-menu.module.css";
 import { GacBattle, GacDataRequest } from "../type_defs/data_classes";
+import { apiUrl } from "../type_defs/settings";
 const axios = require('axios').default;
 
 
 const BottomMenu: FunctionComponent = () => {
 
-	const base_url='http://192.168.2.205:8000/'
+
 	const {allGacSeasons} = useStaticData()
 	const {currentGac,attackerTeam, defenderTeam, setAppData} = useAppData()
 	
@@ -39,7 +40,7 @@ async function fetchGacData(url:string, body:GacDataRequest) {
 		console.log(currentGac)
 		console.log
 		console.log(new_request)
-		fetchGacData(base_url + 'fetch_gac_data', new_request)
+		fetchGacData(apiUrl + 'fetch_gac_data', new_request)
 	}
 
 	const handleClickClear = () => {

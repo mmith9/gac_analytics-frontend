@@ -16,6 +16,35 @@ export interface StatLimit {
   stat_min: number;
   stat_max: number;
 }
+export interface DcMechanic {
+  dc_mc_id: number;
+  dc_mc_name: string;
+}
+export interface DcStat {
+  ds_id: number;
+  ds_name: string;
+}
+export interface DictBundle {
+  unit_dict: Unit[];
+  zuo_dict: Zuo[];
+  dc_mc_dict: DcMechanic[];
+  unit_stat_dict: UnitStat[];
+  dc_stat_dict: DcStat[];
+}
+export interface Unit {
+  name: string;
+  image_url: string;
+  unit_id: string;
+  base_id: string;
+}
+export interface Zuo {
+  zuo_id: number;
+  zuo_name: string;
+}
+export interface UnitStat {
+  us_id: string;
+  us_name: string;
+}
 export interface Freq {
   id: number;
   count: number;
@@ -58,7 +87,7 @@ export interface TeamCC {
 }
 export interface UnitCC {
   unit_id: number;
-  stat_limits: StatLimit[];
+  stat_limits?: StatLimit[];
 }
 export interface WinCC {
   attempt?: number[];
@@ -67,9 +96,10 @@ export interface WinCC {
 }
 export interface PORow {
   id: number;
-  count: number;
+  count?: number;
   name?: string;
   max_value?: number;
+  min_value?: number;
   opt1?: string;
   units?: Freq[];
 }
@@ -81,12 +111,6 @@ export interface PrecalcObject {
 export interface Team {
   leader: Unit;
   members: Unit[];
-}
-export interface Unit {
-  name: string;
-  image_url: string;
-  unit_id: string;
-  base_id: string;
 }
 export interface UnitFreq {
   name: string;

@@ -3,6 +3,7 @@ import { Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEve
 import { useEffect, useState } from "react"
 import { StatLimit , PORow} from "../type_defs/data_classes"
 import CancelIcon from '@mui/icons-material/Cancel';
+import { apiUrl } from "../type_defs/settings";
 
 const axios = require('axios').default;
 
@@ -30,7 +31,7 @@ const DcStatsMultiDroplist = ({ initLimits, season, valueReturn }: { initLimits:
         valueReturn(newLimits)
     }
 
-    const [allLimits, setAllLimits] = useState<[PORow] | null>(null)
+    const [allLimits, setAllLimits] = useState<PORow[] | null>(null)
 
     async function fetcher(url: string) {
         //console.log('fetcher:', url)
@@ -40,37 +41,43 @@ const DcStatsMultiDroplist = ({ initLimits, season, valueReturn }: { initLimits:
         { console.log(err) }
         //console.log(response)
         if (response) {
-            const data = response.data.payload as [PORow]
+            const data = response.data.payload as PORow[]
             setAllLimits(data)
         }
     }
-    const url = 'http://192.168.2.205:8000/precalcs?season=' + season + '&item_type=dc_all_stats'
+    const url = apiUrl + 'precalcs?season=' + season + '&item_type=dc_all_stats'
     useEffect(() => {fetcher(url)},[url])
 
     //console.log('alllimits', allLimits)
     if (!allLimits) {return (<></>)}
+
+    let usedLimits:Number[] = []
+    if (limits) {usedLimits = limits.map((limit) => limit.stat_id)}
+
     return (
         <>
             <Button onClick={addField}>Add stats to datacron</Button>
-            {limits.map((limit, index) => (<>
+            {limits.map((limit, index) => (
             <Stack direction='row' key={index}>
-                <DcStatDroplist listIndex={index} currentLimit={limit} allLimits={allLimits} valueReturn={limitChange}/>
-                <Box justifyContent='center' sx={{ background: 'white' }}>
+                    <DcStatDroplist listIndex={index} currentLimit={limit} usedLimits={usedLimits} allLimits={allLimits} valueReturn={limitChange}/>
+                <Box justifyContent='center' sx={{ background: 'white', mb:'30px'}}>
                     <Button variant='text' color='error' onClick={() => {removeField(index)}} size='small' sx={{ mt: '0.7vh' }}>
                         <CancelIcon fontSize='large' />
                     </Button>
                 </Box>
             </Stack>
-            <br></br>
-            </>
+            
+            
             ))}
         </>
     )
 
 }
 
-const DcStatDroplist = ({listIndex, currentLimit, allLimits, valueReturn}:{listIndex:number, currentLimit:StatLimit, allLimits:[PORow], valueReturn:Function}) => {
-
+const DcStatDroplist = ({listIndex, currentLimit, allLimits, usedLimits, valueReturn}:
+    {listIndex:number, currentLimit:StatLimit, allLimits:PORow[], usedLimits: Number[],  valueReturn:Function}) => {
+    
+    
     const getMaxOfStat = (stat_id: number) => {
         let the_max = 0
         for (let i = 0; i < allLimits.length; i++) {
@@ -107,7 +114,10 @@ const DcStatDroplist = ({listIndex, currentLimit, allLimits, valueReturn}:{listI
     }
 
     let menu_items: JSX.Element[]
-    menu_items = allLimits.map(row => (
+
+    const filter = usedLimits.filter((num) => (num != currentLimit.stat_id))
+
+    menu_items = allLimits.filter((limit) => (!filter.includes(limit.id))).map(row => (
         <MenuItem key={row.id} value={row.id} >
             <Stack direction='row' spacing='10px'>
                 <Typography align='right' fontSize='sx' fontWeight='light'>

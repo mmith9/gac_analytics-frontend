@@ -8,12 +8,12 @@ import { useStaticData } from "../contexts/static_data_context_provider";
 
 const SidePanel = ({side}:{side:string}) => {
 	const {attackerTeam, defenderTeam, unitDialogProps, setAppData} = useAppData()
-	const {allUnits} = useStaticData()
+	const {unit_dict} = useStaticData()
 	
 	const handleClick_add_unit = () => setAppData({ type: 'UNIT_DIALOG', value: { open: true, side: side } })
 	const handleClick_add_datacron = () => setAppData({ type: 'DATACRON_DIALOG', value: { open: true, side: side } })
 
-	//const handleClick = ()=> setAppData({type:'UNIT_DIALOG', value:{open:true, side:side}})
+	const handleClick_team = ()=> setAppData({type:'TEAM_DIALOG', value:{open:true, side:side}})
 
 	const theTeam = (side=='attackers') ? attackerTeam : defenderTeam
 
@@ -42,11 +42,11 @@ const SidePanel = ({side}:{side:string}) => {
 					{theTeam ? theTeam.members.map((unit, index) => (
 						<ListItem button onClick={() => { }} key={index}>
 							<ListItemAvatar>
-								<Avatar src={allUnits[unit.unit_id - 1].image_url} sx={{ bgcolor: blue[100], color: blue[600] }}>
+								<Avatar src={unit_dict[unit.unit_id - 1].image_url} sx={{ bgcolor: blue[100], color: blue[600] }}>
 
 								</Avatar>
 							</ListItemAvatar>
-							<ListItemText primary={allUnits[unit.unit_id - 1].name} />
+							<ListItemText primary={unit_dict[unit.unit_id - 1].name} />
 						</ListItem>
 					)) : null}
 				  </>
@@ -58,6 +58,10 @@ const SidePanel = ({side}:{side:string}) => {
 			  <Button variant='outlined' id="basic-button" onClick={handleClick_add_datacron}>
 				  Add datacron
 			  </Button>
+			  <Button variant='outlined' id="basic-button" onClick={handleClick_team}>
+				  Team
+			  </Button>
+
 			</Paper>
 		</div>
 	);

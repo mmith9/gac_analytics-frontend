@@ -54,6 +54,9 @@ function appDataReducer(state:AppDataInterface, action:Action):AppDataInterface 
     case 'DATACRON_DIALOG': {
       return { ...state, datacronDialogProps: action.value }
     }
+    case 'TEAM_DIALOG': {
+      return { ...state, teamDialogProps: action.value }
+    }
     case 'GAC_BATTLE_DATA': {
       return { ...state, gacBattleData: action.value }
     }

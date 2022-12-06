@@ -14,7 +14,7 @@ const axios = require('axios').default;
 export const Teams = ({side}:{side:string}) =>{
 	//console.log('team render ', side)
 	const { gacBattleData, currentGac, defenderTeam, attackerTeam, setAppData} = useAppData()
-	const { allUnits } = useStaticData()
+	const { unit_dict } = useStaticData()
 	const [leaders, setLeaders] = useState<[PORow] | null>(null)
 	const [unitsPerLeader, setUnitsPerLeader] = useState<[PORow] | null>(null)
 
@@ -44,7 +44,7 @@ export const Teams = ({side}:{side:string}) =>{
 	useEffect(() => {fetcher(leader_url, setLeaders)}, [leader_url])
 	useEffect(()=> {fetcher(unit_url, setUnitsPerLeader)},[unit_url])
 
-	if (allUnits.length === 0 || ! (leaders)) { console.log('no render') ;return (<></>)}
+	if (unit_dict.length === 0 || ! (leaders)) { console.log('no render') ;return (<></>)}
 
 	if (gacBattleData.battles.length === 0)
 	{
@@ -68,7 +68,7 @@ export const Teams = ({side}:{side:string}) =>{
 				{	
 					if (unitsToDraw.length>unit_num) {
 						unit_id = unitsToDraw[unit_num].id -1 				
-						unit = {...allUnits[unit_id]}
+						unit = {...unit_dict[unit_id]}
 						unit.count = unitsToDraw[unit_num].count
 						unit_row.push(unit)
 						unit_num++
@@ -84,12 +84,12 @@ export const Teams = ({side}:{side:string}) =>{
 		console.log('true render')
 		if (side=='defenders') {
 			unit_rows = gacBattleData.battles.map((battle, index) => (<Team_row key={index} side='defenders'
-				units={battle.defenders.filter(defender => defender > 0).map(defender => allUnits[defender - 1])} />))
+				units={battle.defenders.filter(defender => defender > 0).map(defender => unit_dict[defender - 1])} />))
 		}
 		else {
 			unit_rows = gacBattleData.battles.map((battle, index) => (<Team_row key={index} side='attackers'
 				wins={battle.wins} losses={battle.losses} avg_banners={battle.avg_banners} win_percent={battle.win_percent}
-				units={battle.attackers.filter(attacker => attacker > 0).map(attacker => allUnits[attacker - 1])} />))
+				units={battle.attackers.filter(attacker => attacker > 0).map(attacker => unit_dict[attacker - 1])} />))
 		}
 	}
 	

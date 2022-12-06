@@ -1,17 +1,11 @@
-import { useStaticData } from "../contexts/static_data_context_provider";
 import { useAppData } from '../contexts/app_data_context_provider'
-import { UnitList } from '../type_defs/data_types';
 import { useEffect, useState } from 'react';
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-import PersonIcon from '@mui/icons-material/Person';
 import Box from '@mui/material/Box'
-import { blue } from '@mui/material/colors';
-import DebouncedTextInput from './debounced_text_input';
 import { addDatacronToTeam, copyTeam } from "../type_defs/gac_objects";
 import { DatacronCC, StatLimit ,PORow, Team } from "../type_defs/data_classes";
 import { DatacronDialogProps} from "../type_defs/dialogs";
-import { MenuItem, Select } from "@mui/material";
 import DcAbilityDropList from "./dc_ability_drop_menu";
 import DcStatsMultiDroplist from "./dc_stat_multi_droplists";
 
@@ -64,7 +58,7 @@ function DatacronDialog(props: DatacronDialogProps)
 
     const close_datacron_dialog = () =>
     {
-        setAppData({ type: 'DATACRON_DIALOG', value: { open: false, side: '' } })
+        setAppData({ type: 'DATACRON_DIALOG', value: { open: false, side: side } })
         //console.log('DC DIALOG', datacron)
     }
 

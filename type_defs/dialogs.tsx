@@ -3,13 +3,13 @@ import { DatacronCC } from "./data_classes";
 export interface AddUnitDialogProps
 {
     open: boolean;
-    selectedValue: string;
+
     onClose: Function;
     side: string;
 }
 
 export const addUnitDialogProps_init: AddUnitDialogProps = {
-    open: false, selectedValue: '', onClose: () => { }, side: '',
+    open: false, onClose: () => { }, side: '',
 }
 
 export interface DatacronDialogProps

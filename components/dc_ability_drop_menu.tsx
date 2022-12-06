@@ -2,6 +2,7 @@ import { Select, MenuItem, SelectChangeEvent, InputLabel, FormControl, Typograph
 import { useState, useEffect } from "react";
 import { PORow } from "../type_defs/data_classes";
 import CancelIcon from '@mui/icons-material/Cancel';
+import { apiUrl } from "../type_defs/settings";
 const axios = require('axios').default;
 
 
@@ -44,7 +45,7 @@ const DcAbilityDropList = ({ initValue,dc_ab_level, season, valueReturn }:
         setDcAbId(initValue)
         if (initValue !== '0') { setCancelDisabled(false) }
     }
-    const url = 'http://192.168.2.205:8000/precalcs?season=' + season + '&item_type=dc_ability_' + dc_ab_level
+    const url = apiUrl + 'precalcs?season=' + season + '&item_type=dc_ability_' + dc_ab_level
     useEffect(() => { fetcher(url) }, [url])
 
     function strip_tags(a_string: string) {
@@ -86,7 +87,7 @@ const DcAbilityDropList = ({ initValue,dc_ab_level, season, valueReturn }:
                         </Typography>
                         <Box >
                         
-                        {strip_tags(row.name)}
+                        {strip_tags(row.name as string)}
                         
                         </Box>
                     </Stack>
